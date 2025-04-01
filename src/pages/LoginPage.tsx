@@ -5,7 +5,7 @@ import { useAppSelector, useAppDispatch } from '../shared/hooks/storeHooks'
 import { selectStatus } from '../shared/redux/slices/usersSlice'
 import { YouTubeSpaRoutes } from '../shared/helpers/Routes'
 import { LoginForm } from '../features/LoginForm'
-import { ErrorForm } from '../features/ErrorForm'
+import { ErrorPage } from './ErrorPage'
 
 export const LoginPage = (): JSX.Element => {
   const dispatch = useAppDispatch()
@@ -20,7 +20,7 @@ export const LoginPage = (): JSX.Element => {
   }, [status, navigate])
 
   if (status === 'failed') {
-    return <ErrorForm />
+    return <ErrorPage />
   }
 
   return <LoginForm />

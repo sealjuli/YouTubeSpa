@@ -10,19 +10,17 @@ import './App.css'
 
 export const App = (): JSX.Element => {
   return (
-    <div>
-      <Routes>
-        <Route path={YouTubeSpaRoutes.root} element={<Layout />}>
-          <Route
-            index
-            element={<Navigate to={YouTubeSpaRoutes.login} replace />}
-          />
-          <Route path={YouTubeSpaRoutes.login} element={<LoginPage />} />
-          <Route element={<PrivateRoute />}>
-            <Route path={YouTubeSpaRoutes.search} element={<SearchPage />} />
-          </Route>
+    <Routes>
+      <Route path={YouTubeSpaRoutes.root} element={<Layout />}>
+        <Route
+          index
+          element={<Navigate to={YouTubeSpaRoutes.login} replace />}
+        />
+        <Route path={YouTubeSpaRoutes.login} element={<LoginPage />} />
+        <Route element={<PrivateRoute />}>
+          <Route path={YouTubeSpaRoutes.search} element={<SearchPage />} />
         </Route>
-      </Routes>
-    </div>
+      </Route>
+    </Routes>
   )
 }

@@ -1,3 +1,4 @@
 import { JSX } from 'react'
+import { HomePage } from '../widgets/HomePage/HomePage'
 
-export const SearchPage = (): JSX.Element => <h1>Search</h1>
+export const SearchPage = (): JSX.Element => <HomePage></HomePage>

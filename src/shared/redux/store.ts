@@ -1,14 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
-// import { enterValueReducer } from './slices/enterValueSlice'
-// import { updatingValueReducer } from './slices/updatingValueSlice'
-// import { todosReducer } from './slices/todosSlice'
 import { usersReducer } from './slices/usersSlice'
+import { videosReducer } from './slices/videosSlice'
 
 export const store = configureStore({
     reducer: {
-        // enterValueSlice: enterValueReducer,
-        // updatingValueSlice: updatingValueReducer,
-        // todosSlice: todosReducer,
+        videosSlice: videosReducer,
         usersSlice: usersReducer,
     },
 })

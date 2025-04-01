@@ -25,7 +25,7 @@ export const LoginForm = (): JSX.Element => {
     <StyledDiv>
       <Image
         width={50}
-        src="https://media.licdn.com/dms/image/v2/D4D0BAQGOQne94Bnf5Q/company-logo_400_400/company-logo_400_400/0/1683616127202/techsolvo_logo?e=2147483647&v=beta&t=8TFJK_L9nRChsiYkex9sppP5wzaaK82N67JZQgd_iJA" // Укажите URL картинки
+        src="/YouTubeSpa/logo.jpg"
         alt="Login"
         preview={false}
       />

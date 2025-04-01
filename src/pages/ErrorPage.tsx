@@ -4,7 +4,7 @@ import { StyledDiv } from '../shared/UI/StyledComponents'
 import { useAppSelector, useAppDispatch } from '../shared/hooks/storeHooks'
 import { clearUsersState } from '../shared/redux/slices/usersSlice'
 
-export const ErrorForm = (): JSX.Element => {
+export const ErrorPage = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const error = useAppSelector(selectError)
 
