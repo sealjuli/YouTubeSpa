@@ -1,30 +1,32 @@
 import { JSX } from 'react'
-import { InputForm } from '../../features/InputForm'
-import { Videos } from '../VideosWidget/Videos'
-import { DisplayInformation } from '../../features/DisplayInformation/DisplayInformation'
+import { Layout } from 'antd'
+import { SearchtWidget } from '../../widgets/SearchWidget/SearchWidget'
+import { FavoritesWidget } from '../../widgets/FavoritesWidget/FavoritesWidget'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
-import {
-  selectVideoStatus,
-  selectVideosError,
-} from '../../shared/redux/slices/videosSlice'
-import { ModalWindow } from '../../features/ModalWindow/ModalWindow'
+import { selectVideoStatus } from '../../shared/redux/slices/videosSlice'
+import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
+import { menuItemsEnum } from '../../shared/helpers/menuItemsEnum'
+import './ContentWidget.css'
+
+const { Content } = Layout
 
 export const ContentWidget = (): JSX.Element => {
-  const videosStatus = useAppSelector(selectVideoStatus)
-  const error = useAppSelector(selectVideosError)
+  const status = useAppSelector(selectVideoStatus)
+  const menuItem = useAppSelector(selectCurrentMenuItem)
+  const favourites = menuItem === menuItemsEnum.favorites
 
-  if (videosStatus === 'succeeded') {
-    return (
-      <>
-        <InputForm />
-        <DisplayInformation />
-        <Videos />
-        <ModalWindow />
-      </>
-    )
-  } else if (videosStatus === 'failed') {
-    return <p>Ошибка загрузки: {error}</p>
-  }
-
-  return <InputForm></InputForm>
+  return (
+    <Content
+      className={
+        status === 'succeeded' || status === 'loading' || favourites
+          ? 'contentStyle'
+          : 'contentStyle contentStyleCenter'
+      }
+    >
+      {/* Основной */}
+      {!favourites && <SearchtWidget />}
+      {/* Избранное */}
+      {favourites && <FavoritesWidget />}
+    </Content>
+  )
 }

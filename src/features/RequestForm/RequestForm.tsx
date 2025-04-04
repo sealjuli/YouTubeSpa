@@ -45,80 +45,78 @@ export const RequestForm = (): JSX.Element => {
   }, [form, queryModalWindow])
 
   return (
-    <div>
-      <Form
-        form={form}
-        className="RequestForm"
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        autoComplete="off"
+    <Form
+      form={form}
+      className="RequestForm"
+      name="basic"
+      labelCol={{ span: 8 }}
+      wrapperCol={{ span: 16 }}
+      autoComplete="off"
+    >
+      <Form.Item<FieldType>
+        label="Запрос"
+        name="request"
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
+        style={{ marginBottom: '15px' }}
+        rules={[{ required: true, message: 'Пожалуйста, заполните запрос' }]}
       >
-        <Form.Item<FieldType>
-          label="Запрос"
-          name="request"
-          labelCol={{ span: 24 }}
-          wrapperCol={{ span: 24 }}
-          style={{ marginBottom: '15px' }}
-          rules={[{ required: true, message: 'Пожалуйста, заполните запрос' }]}
-        >
-          <Input
-            disabled={currentMenuItem === menuItemsEnum.search}
-            onChange={(e) => dispatch(setRequest(e.target.value))}
-          />
-        </Form.Item>
+        <Input
+          disabled={currentMenuItem === menuItemsEnum.search}
+          onChange={(e) => dispatch(setRequest(e.target.value))}
+        />
+      </Form.Item>
 
-        <Form.Item<FieldType>
-          label="Название запроса"
-          name="requestName"
-          labelCol={{ span: 24 }}
-          wrapperCol={{ span: 24 }}
-          style={{ marginBottom: '40px' }}
-          rules={[
-            {
-              required: true,
-              message: 'Пожалуйста, заполните название запроса',
-            },
-          ]}
-        >
-          <Input onChange={(e) => dispatch(setRequestName(e.target.value))} />
-        </Form.Item>
+      <Form.Item<FieldType>
+        label="Название запроса"
+        name="requestName"
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
+        style={{ marginBottom: '40px' }}
+        rules={[
+          {
+            required: true,
+            message: 'Пожалуйста, заполните название запроса',
+          },
+        ]}
+      >
+        <Input onChange={(e) => dispatch(setRequestName(e.target.value))} />
+      </Form.Item>
 
-        <Form.Item<FieldType>
-          label="Сортировать по"
-          name="sortBy"
-          labelCol={{ span: 24 }}
-          wrapperCol={{ span: 24 }}
-          style={{ marginBottom: '40px' }}
-          rules={[]}
-        >
-          <Select
-            options={options}
-            onChange={(value) => dispatch(setSortBy(value))}
-          />
-        </Form.Item>
+      <Form.Item<FieldType>
+        label="Сортировать по"
+        name="sortBy"
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
+        style={{ marginBottom: '40px' }}
+        rules={[]}
+      >
+        <Select
+          options={options}
+          onChange={(value) => dispatch(setSortBy(value))}
+        />
+      </Form.Item>
 
-        <Form.Item<FieldType>
-          label="Количество видео на странице"
-          name="quantity"
-          labelCol={{ span: 24 }}
-          wrapperCol={{ span: 24 }}
-          style={{ marginBottom: '40px' }}
-        >
-          <InputNumber
-            min={1}
-            max={50}
-            onChange={(value) => {
-              dispatch(setQuantity(value))
-            }}
-            onBlur={() => {
-              if (!queryModalWindow.quantity) {
-                dispatch(setQuantity(12))
-              }
-            }}
-          />
-        </Form.Item>
-      </Form>
-    </div>
+      <Form.Item<FieldType>
+        label="Количество видео на странице"
+        name="quantity"
+        labelCol={{ span: 24 }}
+        wrapperCol={{ span: 24 }}
+        style={{ marginBottom: '40px' }}
+      >
+        <InputNumber
+          min={1}
+          max={50}
+          onChange={(value) => {
+            dispatch(setQuantity(value))
+          }}
+          onBlur={() => {
+            if (!queryModalWindow.quantity) {
+              dispatch(setQuantity(12))
+            }
+          }}
+        />
+      </Form.Item>
+    </Form>
   )
 }

@@ -5,12 +5,14 @@ import { selectLikeValue } from '../../shared/redux/slices/likeSlice'
 import { changeShowWindow } from '../../shared/redux/slices/modalWindowSlice'
 import { selectInputValue } from '../../shared/redux/slices/inputValueSlice'
 import { setRequest } from '../../shared/redux/slices/modalWindowSlice'
+import { selectVideoStatus } from '../../shared/redux/slices/videosSlice'
 import './LikeButton.css'
 
 export const LikeButton = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const liked = useAppSelector(selectLikeValue)
   const query = useAppSelector(selectInputValue)
+  const succeededStatus = useAppSelector(selectVideoStatus) === 'succeeded'
 
   const clickLike = () => {
     dispatch(setRequest(query))
@@ -18,8 +20,13 @@ export const LikeButton = (): JSX.Element => {
   }
 
   return (
-    <span className={`likeButton ${liked ? 'liked' : ''}`} onClick={clickLike}>
-      {liked ? <HeartFilled /> : <HeartOutlined />}
-    </span>
+    <div className={succeededStatus ? 'visible' : 'hidden'}>
+      <span
+        className={`likeButton ${liked ? 'liked' : ''}`}
+        onClick={clickLike}
+      >
+        {liked ? <HeartFilled /> : <HeartOutlined />}
+      </span>
+    </div>
   )
 }

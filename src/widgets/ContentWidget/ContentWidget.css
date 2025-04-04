@@ -1,0 +1,11 @@
+.contentStyle {
+  min-height: 120;
+  color: black;
+  background-color: lightgray;
+  overflow-x: auto;
+}
+
+.contentStyleCenter {
+  text-align: center;
+  align-content: center;
+}

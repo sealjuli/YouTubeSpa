@@ -57,15 +57,7 @@ export const InputForm = (): JSX.Element => {
         value={inputValue}
         style={{ maxWidth: '40vw' }}
         loading={videosStatus === 'loading'}
-        suffix={
-          <div
-            style={{
-              visibility: videosStatus === 'succeeded' ? 'visible' : 'hidden',
-            }}
-          >
-            <LikeButton />
-          </div>
-        }
+        suffix={<LikeButton />}
       />
     </div>
   )
