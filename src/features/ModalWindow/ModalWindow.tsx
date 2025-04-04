@@ -7,7 +7,7 @@ import {
 } from '../../shared/redux/slices/modalWindowSlice'
 import { setLikeButton } from '../../shared/redux/slices/likeSlice'
 import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
-import { RequestForm } from '../../features/RequestForm/RequestForm'
+import { RequestForm } from '../RequestForm/RequestForm'
 import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
 import { menuItemsEnum } from '../../shared/helpers/menuItemsEnum'
 import {

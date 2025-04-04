@@ -4,7 +4,7 @@ import { YouTubeSpaRoutes } from '../shared/helpers/Routes'
 import { Layout } from '../pages/Layout'
 import { LoginPage } from '../pages/LoginPage'
 import { PrivateRoute } from '../pages/PrivateRoute'
-import { SearchPage } from '../pages/SearchPage'
+import { HomePage } from '../pages/HomePage/HomePage'
 
 import './App.css'
 
@@ -18,7 +18,7 @@ export const App = (): JSX.Element => {
         />
         <Route path={YouTubeSpaRoutes.login} element={<LoginPage />} />
         <Route element={<PrivateRoute />}>
-          <Route path={YouTubeSpaRoutes.search} element={<SearchPage />} />
+          <Route path={YouTubeSpaRoutes.search} element={<HomePage />} />
         </Route>
       </Route>
     </Routes>

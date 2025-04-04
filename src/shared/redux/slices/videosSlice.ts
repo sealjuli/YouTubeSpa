@@ -36,7 +36,7 @@ export type InitialStateType = {
     videos: {
         status: string;
         data: YouTubeResponse | null,
-        error: null | string;
+        error: string | null;
     }
 }
 

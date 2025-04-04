@@ -36,10 +36,9 @@ const fetchPostLogin = createAppAsyncThunk<LoginUserResponseType, LoginUserType>
 type InitialStateType = {
     status: string;
     error: null | string;
-    message: null | string;
 }
 
-const initialState: InitialStateType = { status: '', error: null, message: null }
+const initialState: InitialStateType = { status: '', error: null }
 
 const usersSlice = createSlice({
     name: 'usersSlice',
@@ -48,7 +47,6 @@ const usersSlice = createSlice({
         clearUsersState: (state) => {
             state.status = ''
             state.error = null
-            state.message = null
         },
     },
     extraReducers: (builder) => {
@@ -71,11 +69,10 @@ const usersSlice = createSlice({
     selectors: {
         selectStatus: (state) => state.status,
         selectError: (state) => state.error,
-        selectMessage: (state) => state.message,
     },
 })
 
 export { fetchPostLogin }
 export const { clearUsersState } = usersSlice.actions
 export const usersReducer = usersSlice.reducer
-export const { selectStatus, selectError, selectMessage } = usersSlice.selectors
+export const { selectStatus, selectError } = usersSlice.selectors

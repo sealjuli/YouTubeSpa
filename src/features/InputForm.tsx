@@ -53,7 +53,7 @@ export const InputForm = (): JSX.Element => {
         enterButton="Найти"
         size="large"
         onSearch={onSearch}
-        onChange={handleChange} // Срабатывает при вводе
+        onChange={handleChange}
         value={inputValue}
         style={{ maxWidth: '40vw' }}
         loading={videosStatus === 'loading'}

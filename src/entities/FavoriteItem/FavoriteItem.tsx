@@ -32,7 +32,6 @@ export const FavoriteItem = React.memo(({ item }: PropsType): JSX.Element => {
   }
 
   const onClickExecute = (item: FavoriteItemType) => {
-    // установить input
     dispatch(updateInputValue(item.request))
     dispatch(updateSearchInputValue())
     dispatch(
@@ -42,7 +41,6 @@ export const FavoriteItem = React.memo(({ item }: PropsType): JSX.Element => {
         sortBy: item.sortBy,
       })
     )
-    // отправить запрос
     dispatch(setSearch())
   }
 
@@ -61,14 +59,4 @@ export const FavoriteItem = React.memo(({ item }: PropsType): JSX.Element => {
       </div>
     </div>
   )
-
-  //   return (
-  //     <div key={item.id} className={task.isUpdating ? 'task isUpdating' : 'task'}>
-  //       {task.isUpdating ? (
-  //         <UpdatingTask taskId={task.id} />
-  //       ) : (
-  //         <UsualTask taskId={task.id} />
-  //       )}
-  //     </div>
-  //   )
 })

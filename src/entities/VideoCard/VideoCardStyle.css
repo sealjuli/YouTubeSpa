@@ -20,10 +20,6 @@
   width: 240px;
 }
 
-.container {
-  margin: 20px 50px;
-}
-
 .videoInformation {
   display: flex;
   flex-direction: column;
