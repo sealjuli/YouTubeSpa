@@ -1,0 +1,44 @@
+.videoCard {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  line-height: 15px;
+  padding: 0 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.videoCard.blocks img {
+  max-width: 100%;
+}
+
+.videoCard.lines {
+  flex-direction: row;
+}
+
+.videoCard.lines img {
+  width: 240px;
+}
+
+.container {
+  margin: 20px 50px;
+}
+
+.videoInformation {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.videoInformation.lines {
+  width: 70vh;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-left: 10px;
+}
+
+.channelTitle {
+  color: gray;
+  margin-top: 10px;
+}

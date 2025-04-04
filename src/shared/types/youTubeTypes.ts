@@ -1,20 +1,39 @@
-type YouTubeVideo = {
+export type YouTubeResponse = {
+  kind: string;
+  etag: string;
+  items: YoutubeSearchResult[];
+  nextPageToken?: string;
+  regionCode?: string;
+  pageInfo: {
+    totalResults: number;
+    resultsPerPage: number;
+  };
+}
+
+export type YoutubeSearchResult = {
+  kind: string;
+  etag: string;
   id: {
-    videoId: string;
+    kind: string;
+    videoId?: string;
+    channelId?: string;
+    playlistId?: string;
   };
   snippet: {
     title: string;
     description: string;
-    thumbnails: {
-      default: { url: string };
-      medium: { url: string };
-      high: { url: string };
-    };
     channelTitle: string;
-    publishedAt: string;
+    publishTime: string;
+    thumbnails: {
+      default: Thumbnail;
+      medium: Thumbnail;
+      high: Thumbnail;
+    };
   };
 }
 
-export type YouTubeResponse = {
-  items: YouTubeVideo[];
+type Thumbnail = {
+  url: string;
+  width: number;
+  height: number;
 }

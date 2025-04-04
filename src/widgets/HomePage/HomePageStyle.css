@@ -6,9 +6,10 @@
 
 .contentStyle {
   min-height: 120;
-  line-height: 120px;
+  /* line-height: 120px; */
   color: black;
   background-color: lightgray;
+  overflow-x: auto;
 }
 
 .contentStyleCenter {
@@ -34,6 +35,7 @@
 }
 
 .logo {
+  cursor: pointer;
   background-image: url('/logo.jpg');
   background-size: contain;
   width: 40px;

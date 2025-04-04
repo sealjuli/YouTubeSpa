@@ -1,0 +1,9 @@
+.likeButton {
+  cursor: pointer;
+  font-size: 18px;
+  color: 'gray';
+}
+
+.liked {
+  color: red;
+}

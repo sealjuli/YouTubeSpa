@@ -8,6 +8,9 @@ const fetchPostLogin = createAppAsyncThunk<LoginUserResponseType, LoginUserType>
     async (user: LoginUserType, thunkAPI) => {
         try {
             const response = await usersApi.postLoginUser(user)
+            const login = user.email;
+            localStorage.setItem('login', login)
+            localStorage.setItem(`savedRequests_${login}`, '');
             return response.data
         } catch (e) {
             const error = e as {

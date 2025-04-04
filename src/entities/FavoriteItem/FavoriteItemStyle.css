@@ -1,0 +1,18 @@
+.item {
+  width: 80vw;
+  height: 35px;
+  background-color: white;
+  margin: 5px auto;
+  padding: 0 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.item-text {
+  flex-grow: 1;
+  cursor: pointer;
+  display: flex;
+}

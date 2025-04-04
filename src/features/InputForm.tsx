@@ -1,52 +1,70 @@
-import { JSX, useState } from 'react'
+import { ChangeEvent, JSX } from 'react'
 import { Input } from 'antd'
-import { HeartOutlined, HeartFilled } from '@ant-design/icons'
 import type { GetProps } from 'antd'
-import { fetchGetVideos } from '../shared/redux/slices/videosSlice'
-import { useAppDispatch } from '../shared/hooks/storeHooks'
-
-import { useAppSelector } from '../shared/hooks/storeHooks'
-import { selectVideoStatus } from '../shared/redux/slices/videosSlice'
+import { LikeButton } from './LikeButton/LikeButton'
+import {
+  fetchGetVideos,
+  selectVideoStatus,
+} from '../shared/redux/slices/videosSlice'
+import { useAppDispatch, useAppSelector } from '../shared/hooks/storeHooks'
+import {
+  updateInputValue,
+  updateSearchInputValue,
+  selectInputValue,
+} from '../shared/redux/slices/inputValueSlice'
+import {
+  selectLikeValue,
+  removeLikeButton,
+} from '../shared/redux/slices/likeSlice'
+import { sortEnum } from '../shared/types/favoriteItemsTypes'
+import { clearQuery } from '../shared/redux/slices/modalWindowSlice'
 
 type SearchProps = GetProps<typeof Input.Search>
 const { Search } = Input
 
 export const InputForm = (): JSX.Element => {
-  const [liked, setLiked] = useState(false)
   const dispatch = useAppDispatch()
 
   const videosStatus = useAppSelector(selectVideoStatus)
+  const inputValue = useAppSelector(selectInputValue)
+  const like = useAppSelector(selectLikeValue)
 
-  const onSearch: SearchProps['onSearch'] = (value, _e, info) => {
-    console.log(info?.source, value)
-    dispatch(fetchGetVideos(value))
+  const onSearch: SearchProps['onSearch'] = (value) => {
+    dispatch(updateSearchInputValue())
+    dispatch(
+      fetchGetVideos({ request: value, quantity: 12, sortBy: sortEnum.none })
+    )
+  }
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    dispatch(updateInputValue(event.target.value))
+    dispatch(clearQuery())
+    // если стоит лайк, то убирать
+    if (like) {
+      dispatch(removeLikeButton())
+    }
   }
 
   return (
-    <div>
+    <div className="inputForm">
       <h1>Поиск видео</h1>
       <Search
         placeholder="Что ищем?"
-        // allowClear
         enterButton="Найти"
         size="large"
         onSearch={onSearch}
-        // value={}
+        onChange={handleChange} // Срабатывает при вводе
+        value={inputValue}
         style={{ maxWidth: '40vw' }}
         loading={videosStatus === 'loading'}
         suffix={
-          videosStatus === 'succeeded' && (
-            <span
-              onClick={() => setLiked(!liked)}
-              style={{
-                cursor: 'pointer',
-                fontSize: '18px',
-                color: liked ? 'red' : 'gray',
-              }}
-            >
-              {liked ? <HeartFilled /> : <HeartOutlined />}
-            </span>
-          )
+          <div
+            style={{
+              visibility: videosStatus === 'succeeded' ? 'visible' : 'hidden',
+            }}
+          >
+            <LikeButton />
+          </div>
         }
       />
     </div>

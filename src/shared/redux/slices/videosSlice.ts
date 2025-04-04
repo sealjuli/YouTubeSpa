@@ -1,14 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from '../../hooks/storeHooks'
-import { YouTubeResponse } from '../../types/youTubeTypes'
+import { YouTubeResponse, YoutubeSearchResult } from '../../types/youTubeTypes'
 import { youTubeApi } from '../../api/youTubeApi'
+import { FieldType } from '../../types/favoriteItemsTypes'
+import { sortEnum } from '../../types/favoriteItemsTypes'
 
-const fetchGetVideos = createAppAsyncThunk<YouTubeResponse, string>('videosSlice/fetchGetVideos', async (query: string, thunkAPI) => {
+type YouTubeRequest = Omit<FieldType, 'requestName'>
+
+const sortByTitle = (a: YoutubeSearchResult, b: YoutubeSearchResult) => {
+    return a.snippet.title.toLowerCase().localeCompare(b.snippet.title.toLowerCase());
+};
+
+const sortByChannelTitle = (a: YoutubeSearchResult, b: YoutubeSearchResult) => {
+    return a.snippet.channelTitle.toLowerCase().localeCompare(b.snippet.channelTitle.toLowerCase());
+};
+
+const fetchGetVideos = createAppAsyncThunk<YouTubeResponse, YouTubeRequest>('videosSlice/fetchGetVideos', async (request: YouTubeRequest, thunkAPI) => {
     try {
-        const { data } = await youTubeApi.getVideos(query)
+        const { data } = await youTubeApi.getVideos(request)
+        if (data.items && data.items.length > 0) {
+            if (request.sortBy === sortEnum.title) {
+                data.items.sort(sortByTitle)
+            } else if (request.sortBy === sortEnum.channelTitle) {
+                data.items.sort(sortByChannelTitle)
+            }
+        }
         return data
     } catch (e) {
-        console.log(e)
         const error = e as { message: string }
         return thunkAPI.rejectWithValue(error.message)
     }
@@ -17,12 +35,12 @@ const fetchGetVideos = createAppAsyncThunk<YouTubeResponse, string>('videosSlice
 export type InitialStateType = {
     videos: {
         status: string;
-        data: YouTubeResponse | [],
+        data: YouTubeResponse | null,
         error: null | string;
     }
 }
 
-const initialState: InitialStateType = { videos: { status: '', data: [], error: null } }
+const initialState: InitialStateType = { videos: { status: '', data: null, error: null } }
 
 
 const videosSlice = createSlice({
@@ -30,7 +48,7 @@ const videosSlice = createSlice({
     initialState,
     reducers: {
         clearVideosState: (state) => {
-            state.videos.data = [];
+            state.videos.data = null;
             state.videos.error = null;
             state.videos.status = '';
         },
@@ -48,21 +66,19 @@ const videosSlice = createSlice({
             })
             .addCase(fetchGetVideos.rejected, (state, action) => {
                 state.videos.status = 'failed'
-                console.log(action.payload)
                 if (action.payload) {
                     state.videos.error = action.payload
                 }
             })
     },
     selectors: {
-        selectVideoStatus: (state) => state.videos.status
-        // selectTodos: (state) => state.todos.data,
-        // selectTaskById: (state, id) =>
-        //     state.todos.data.find((task) => task.id === id),
+        selectVideoStatus: (state) => state.videos.status,
+        selectVideosArray: (state) => state.videos.data,
+        selectVideosError: (state) => state.videos.error
     },
 })
 
 export { fetchGetVideos, }
 export const { clearVideosState } = videosSlice.actions
 export const videosReducer = videosSlice.reducer
-export const { selectVideoStatus } = videosSlice.selectors
+export const { selectVideoStatus, selectVideosArray, selectVideosError } = videosSlice.selectors

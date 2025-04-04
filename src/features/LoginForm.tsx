@@ -35,7 +35,7 @@ export const LoginForm = (): JSX.Element => {
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
-        initialValues={{ remember: true }}
+        // initialValues={{ remember: true }}
         onFinish={onFinish}
         autoComplete="off"
       >

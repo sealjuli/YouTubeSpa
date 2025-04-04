@@ -1,7 +1,8 @@
 import { JSX } from 'react'
 import { Layout, Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
-import { ContentWidget } from './ContentWidget'
+import { ContentWidget } from '../ContentWidget'
+import { FavoritesWidget } from '../FavoritesWidget'
 import { MenuInfo } from 'rc-menu/lib/interface'
 import { YouTubeSpaRoutes } from '../../shared/helpers/Routes'
 import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
@@ -9,53 +10,75 @@ import {
   selectVideoStatus,
   clearVideosState,
 } from '../../shared/redux/slices/videosSlice'
+import { clearInputValue } from '../../shared/redux/slices/inputValueSlice'
+import {
+  setFavorites,
+  setSearch,
+  selectCurrentMenuItem,
+} from '../../shared/redux/slices/menuItemSlice'
+import { menuItemsEnum } from '../../shared/helpers/menuItemsEnum'
 import './HomePageStyle.css'
 
 const { Header, Content } = Layout
 
 const items = [
-  { key: 1, label: 'Поиск' },
-  { key: 2, label: 'Избранное' },
-  { key: 3, label: 'Выйти', style: { marginLeft: 'auto' } },
+  { key: 0, label: 'Поиск' },
+  { key: 1, label: 'Избранное' },
+  { key: 2, label: 'Выйти', style: { marginLeft: 'auto' } },
 ]
 
 export const HomePage = (): JSX.Element => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const succeedStatus = useAppSelector(selectVideoStatus) === 'succeeded'
+  const status = useAppSelector(selectVideoStatus)
+  const menuItem = useAppSelector(selectCurrentMenuItem)
+  const favourites = menuItem === menuItemsEnum.favorites
 
   const handleClick = (e: MenuInfo) => {
-    console.log('Нажат пункт меню с ключом:', e.key)
-
-    if (e.key === '1') {
-      //обнулить стэйт
-      dispatch(clearVideosState())
+    if (e.key === '0') {
+      dispatch(setSearch())
     }
 
-    // if (e.key === '3') {
-    //   localStorage.removeItem('token')
-    //   navigate(`/${YouTubeSpaRoutes.root}/${YouTubeSpaRoutes.login}`)
-    // }
+    if (e.key === '1') {
+      dispatch(setFavorites())
+    }
+
+    if (e.key === '2') {
+      localStorage.removeItem('token')
+      localStorage.removeItem('login')
+      navigate(`/${YouTubeSpaRoutes.root}/${YouTubeSpaRoutes.login}`)
+    }
   }
 
   return (
     <Layout className="layoutStyle">
       <Header className="headerStyle">
-        <div className="logo" />
+        <div
+          className="logo"
+          onClick={() => {
+            dispatch(clearVideosState())
+            dispatch(clearInputValue())
+          }}
+        />
         <Menu
           className="menu"
           onClick={(e) => handleClick(e)}
           mode="horizontal"
-          defaultSelectedKeys={['1']}
+          selectedKeys={[menuItem.toString()]}
           items={items}
         />
       </Header>
       <Content
         className={
-          succeedStatus ? 'contentStyle' : 'contentStyle contentStyleCenter'
+          status === 'succeeded' || status === 'loading' || favourites
+            ? 'contentStyle'
+            : 'contentStyle contentStyleCenter'
         }
       >
-        <ContentWidget />
+        {/* Основной */}
+        {!favourites && <ContentWidget />}
+        {/* Избранное */}
+        {favourites && <FavoritesWidget />}
       </Content>
     </Layout>
   )
