@@ -7,13 +7,13 @@ import {
 } from '../../shared/redux/slices/modalWindowSlice'
 import { setLikeButton } from '../../shared/redux/slices/likeSlice'
 import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
-import { RequestForm } from '../RequestForm/RequestForm'
+import { RequestForm } from '../requestForm/requestForm'
 import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
-import { menuItemsEnum } from '../../shared/helpers/menuItemsEnum'
 import {
   updateItem,
   addItem,
 } from '../../shared/redux/slices/favoriteItemsSlice'
+import { menuItemsEnum } from '../../shared/enums/menuItemsEnum'
 
 export const ModalWindow = (): JSX.Element => {
   const isModalOpen = useAppSelector(selectShowWindow)

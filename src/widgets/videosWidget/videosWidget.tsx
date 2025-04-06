@@ -2,14 +2,14 @@ import { JSX } from 'react'
 import { Row } from 'antd'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
 import { selectVideosArray } from '../../shared/redux/slices/videosSlice'
-import { VideoCard } from '../../entities/VideoCard/VideoCard'
+import { VideoCard } from '../../entities/videoCard/videoCard'
 
-import './VideosStyle.css'
+import './videosWidgetStyle.css'
 
-export const Videos = (): JSX.Element => {
+export const VideosWidget = (): JSX.Element => {
   const videos = useAppSelector(selectVideosArray)
 
-  if (videos) {
+  if (videos && videos.items.length > 0) {
     const arr = videos.items.map((val, index) => {
       return <VideoCard key={index} info={val} />
     })

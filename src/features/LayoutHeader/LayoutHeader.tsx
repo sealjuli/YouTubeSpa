@@ -4,8 +4,8 @@ import { useAppDispatch } from '../../shared/hooks/storeHooks'
 import { clearVideosState } from '../../shared/redux/slices/videosSlice'
 import { clearInputValue } from '../../shared/redux/slices/inputValueSlice'
 import { setSearch } from '../../shared/redux/slices/menuItemSlice'
-import { HeaderMenu } from '../HeaderMenu/HeaderMenu'
-import './LayoutHeaderStyle.css'
+import { HeaderMenu } from '../headerMenu/headerMenu'
+import './layoutHeaderStyle.css'
 
 const { Header } = Layout
 

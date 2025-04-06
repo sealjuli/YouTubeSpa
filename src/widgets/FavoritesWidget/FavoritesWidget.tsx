@@ -1,6 +1,6 @@
 import { JSX } from 'react'
-import { FavoriteItem } from '../../entities/FavoriteItem/FavoriteItem'
-import { ModalWindow } from '../../features/ModalWindow/ModalWindow'
+import { FavoriteItem } from '../../entities/favoriteItem/favoriteItem'
+import { ModalWindow } from '../../features/modalWindow/modalWindow'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
 import { selectItems } from '../../shared/redux/slices/favoriteItemsSlice'
 

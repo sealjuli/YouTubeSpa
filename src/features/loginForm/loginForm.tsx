@@ -1,8 +1,8 @@
 import { JSX } from 'react'
 import { FormProps, Button, Form, Input, Typography, Image } from 'antd'
-import { StyledDiv } from '../shared/UI/StyledComponents'
-import { fetchPostLogin } from '../shared/redux/slices/usersSlice'
-import { useAppDispatch } from '../shared/hooks/storeHooks'
+import { fetchPostLogin } from '../../shared/redux/slices/usersSlice'
+import { useAppDispatch } from '../../shared/hooks/storeHooks'
+import './loginFormStyle.css'
 
 type FieldType = {
   username?: string
@@ -22,7 +22,7 @@ export const LoginForm = (): JSX.Element => {
   }
 
   return (
-    <StyledDiv>
+    <div className="styledDiv">
       <Image
         width={50}
         src="/YouTubeSpa/logo.jpg"
@@ -76,6 +76,6 @@ export const LoginForm = (): JSX.Element => {
           </Button>
         </Form.Item>
       </Form>
-    </StyledDiv>
+    </div>
   )
 }

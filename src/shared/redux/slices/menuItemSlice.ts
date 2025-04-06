@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { menuItemsEnum } from '../../helpers/menuItemsEnum'
+import { menuItemsEnum } from '../../enums/menuItemsEnum'
 
 type InitialState = {
     currentItemMenu: menuItemsEnum,

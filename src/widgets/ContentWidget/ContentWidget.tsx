@@ -1,12 +1,12 @@
 import { JSX } from 'react'
 import { Layout } from 'antd'
-import { SearchtWidget } from '../../widgets/SearchWidget/SearchWidget'
-import { FavoritesWidget } from '../../widgets/FavoritesWidget/FavoritesWidget'
+import { SearchtWidget } from '../searchWidget/searchWidget'
+import { FavoritesWidget } from '../favoritesWidget/favoritesWidget'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
 import { selectVideoStatus } from '../../shared/redux/slices/videosSlice'
 import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
-import { menuItemsEnum } from '../../shared/helpers/menuItemsEnum'
-import './ContentWidget.css'
+import { menuItemsEnum } from '../../shared/enums/menuItemsEnum'
+import './contentWidgetStyle.css'
 
 const { Content } = Layout
 
@@ -23,9 +23,7 @@ export const ContentWidget = (): JSX.Element => {
           : 'contentStyle contentStyleCenter'
       }
     >
-      {/* Основной */}
       {!favourites && <SearchtWidget />}
-      {/* Избранное */}
       {favourites && <FavoritesWidget />}
     </Content>
   )

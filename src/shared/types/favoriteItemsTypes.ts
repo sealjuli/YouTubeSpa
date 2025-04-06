@@ -1,13 +1,9 @@
-export enum sortEnum {
-    'none',
-    'title',
-    'channelTitle',
-}
+export type SortType = 'none' | 'title' | 'channelTitle'
 
 export type FieldType = {
     request: string
     requestName: string
-    sortBy: sortEnum
+    sortBy: SortType
     quantity: number | null
 }
 export type FavoriteItemType = FieldType & { id: string }

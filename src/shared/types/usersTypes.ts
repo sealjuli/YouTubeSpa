@@ -1,5 +1,5 @@
 export type LoginUserType = {
-    email: string,
+    email: string
     password: string
 }
 

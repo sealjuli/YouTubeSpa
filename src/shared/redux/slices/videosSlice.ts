@@ -3,7 +3,6 @@ import { createAppAsyncThunk } from '../../hooks/storeHooks'
 import { YouTubeResponse, YoutubeSearchResult } from '../../types/youTubeTypes'
 import { youTubeApi } from '../../api/youTubeApi'
 import { FieldType } from '../../types/favoriteItemsTypes'
-import { sortEnum } from '../../types/favoriteItemsTypes'
 
 type YouTubeRequest = Omit<FieldType, 'requestName'>
 
@@ -19,9 +18,9 @@ const fetchGetVideos = createAppAsyncThunk<YouTubeResponse, YouTubeRequest>('vid
     try {
         const { data } = await youTubeApi.getVideos(request)
         if (data.items && data.items.length > 0) {
-            if (request.sortBy === sortEnum.title) {
+            if (request.sortBy === 'title') {
                 data.items.sort(sortByTitle)
-            } else if (request.sortBy === sortEnum.channelTitle) {
+            } else if (request.sortBy === 'channelTitle') {
                 data.items.sort(sortByChannelTitle)
             }
         }
@@ -34,7 +33,7 @@ const fetchGetVideos = createAppAsyncThunk<YouTubeResponse, YouTubeRequest>('vid
 
 export type InitialStateType = {
     videos: {
-        status: string;
+        status: '' | 'loading' | 'succeeded' | 'failed';
         data: YouTubeResponse | null,
         error: string | null;
     }
@@ -73,6 +72,7 @@ const videosSlice = createSlice({
     },
     selectors: {
         selectVideoStatus: (state) => state.videos.status,
+        selectIsSucceededStatus: (state) => state.videos.status === 'succeeded',
         selectVideosArray: (state) => state.videos.data,
         selectVideosError: (state) => state.videos.error
     },
@@ -81,4 +81,8 @@ const videosSlice = createSlice({
 export { fetchGetVideos, }
 export const { clearVideosState } = videosSlice.actions
 export const videosReducer = videosSlice.reducer
-export const { selectVideoStatus, selectVideosArray, selectVideosError } = videosSlice.selectors
+export const {
+    selectVideoStatus,
+    selectIsSucceededStatus,
+    selectVideosArray,
+    selectVideosError } = videosSlice.selectors

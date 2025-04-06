@@ -1,24 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { displayEnum } from '../../helpers/displayEnum'
+import { DispayType } from '../../types/displayType'
 
-const initialState: { displayValue: displayEnum } = { displayValue: displayEnum.blocks }
+const initialState: { displayValue: DispayType } = { displayValue: 'blocks' }
 
 const displayValueSlice = createSlice({
     name: 'displayValueSlice',
     initialState,
     reducers: {
         setBlocksDisplayValue: (state) => {
-            state.displayValue = displayEnum.blocks
+            state.displayValue = 'blocks'
         },
         setLinesDisplayValue: (state) => {
-            state.displayValue = displayEnum.lines
+            state.displayValue = 'lines'
         }
     },
     selectors: {
-        selectDisplayValue: (state) => state.displayValue
+        selectIsBlocksValue: (state) => state.displayValue === 'blocks'
     },
 })
 
-export const { selectDisplayValue } = displayValueSlice.selectors
+export const { selectIsBlocksValue } = displayValueSlice.selectors
 export const { setBlocksDisplayValue, setLinesDisplayValue } = displayValueSlice.actions
 export const displayValueReducer = displayValueSlice.reducer

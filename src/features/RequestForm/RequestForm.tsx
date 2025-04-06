@@ -10,21 +10,26 @@ import {
 } from '../../shared/redux/slices/modalWindowSlice'
 import { FieldType } from '../../shared/types/favoriteItemsTypes'
 import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
-import { menuItemsEnum } from '../../shared/helpers/menuItemsEnum'
-import { sortEnum } from '../../shared/types/favoriteItemsTypes'
-import './RequestFormStyle.css'
+import { menuItemsEnum } from '../../shared/enums/menuItemsEnum'
+import { SortType } from '../../shared/types/favoriteItemsTypes'
+import './requestFormStyle.css'
 
-const options = [
+type Option = {
+  value: SortType
+  label: string
+}
+
+const options: Option[] = [
   {
-    value: sortEnum.none,
+    value: 'none',
     label: 'Без сортировки',
   },
   {
-    value: sortEnum.title,
+    value: 'title',
     label: 'По названию видео',
   },
   {
-    value: sortEnum.channelTitle,
+    value: 'channelTitle',
     label: 'По названию канала',
   },
 ]

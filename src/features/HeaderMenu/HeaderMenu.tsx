@@ -2,14 +2,14 @@ import { JSX } from 'react'
 import { Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { MenuInfo } from 'rc-menu/lib/interface'
-import { YouTubeSpaRoutes } from '../../shared/helpers/Routes'
+import { YouTubeSpaRoutes } from '../../shared/routes/routes'
 import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
 import {
   setFavorites,
   setSearch,
   selectCurrentMenuItem,
 } from '../../shared/redux/slices/menuItemSlice'
-import './HeaderMenuStyle.css'
+import './headerMenuStyle.css'
 
 const items = [
   { key: 0, label: 'Поиск' },

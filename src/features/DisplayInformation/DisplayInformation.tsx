@@ -1,20 +1,18 @@
 import { JSX } from 'react'
 import { AppstoreOutlined, BarsOutlined } from '@ant-design/icons'
 import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
-import { displayEnum } from '../../shared/helpers/displayEnum'
 import { selectSearchInputValue } from '../../shared/redux/slices/inputValueSlice'
 import {
-  selectDisplayValue,
+  selectIsBlocksValue,
   setBlocksDisplayValue,
   setLinesDisplayValue,
 } from '../../shared/redux/slices/dispaySlice'
-import './DisplayInformation.css'
+import './displayInformationStyle.css'
 
 export const DisplayInformation = (): JSX.Element => {
   const dispatch = useAppDispatch()
   const query = useAppSelector(selectSearchInputValue)
-  const displayBlocks =
-    useAppSelector(selectDisplayValue) === displayEnum.blocks
+  const displayBlocks = useAppSelector(selectIsBlocksValue)
 
   const blocksDisplay = () => {
     dispatch(setBlocksDisplayValue())

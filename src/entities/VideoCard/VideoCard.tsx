@@ -1,11 +1,10 @@
 import { JSX } from 'react'
 import { Col } from 'antd'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
-import { selectDisplayValue } from '../../shared/redux/slices/dispaySlice'
-import { displayEnum } from '../../shared/helpers/displayEnum'
+import { selectIsBlocksValue } from '../../shared/redux/slices/dispaySlice'
 import { YoutubeSearchResult } from '../../shared/types/youTubeTypes'
 
-import './VideoCardStyle.css'
+import './videoCardStyle.css'
 
 type PropsType = {
   info: YoutubeSearchResult
@@ -19,8 +18,7 @@ const openYouTube = (videoId: string) => {
 }
 
 export const VideoCard = ({ info }: PropsType): JSX.Element => {
-  const displayBlocks =
-    useAppSelector(selectDisplayValue) === displayEnum.blocks
+  const displayBlocks = useAppSelector(selectIsBlocksValue)
 
   return (
     <Col

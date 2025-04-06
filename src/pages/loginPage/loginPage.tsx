@@ -1,11 +1,11 @@
 import { JSX, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { clearUsersState } from '../shared/redux/slices/usersSlice'
-import { useAppSelector, useAppDispatch } from '../shared/hooks/storeHooks'
-import { selectStatus } from '../shared/redux/slices/usersSlice'
-import { YouTubeSpaRoutes } from '../shared/helpers/Routes'
-import { LoginForm } from '../features/LoginForm'
-import { ErrorPage } from './ErrorPage'
+import { clearUsersState } from '../../shared/redux/slices/usersSlice'
+import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
+import { selectStatus } from '../../shared/redux/slices/usersSlice'
+import { YouTubeSpaRoutes } from '../../shared/routes/routes'
+import { LoginForm } from '../../features/loginForm/loginForm'
+import { ErrorPage } from '../errorPage/errorPage'
 
 export const LoginPage = (): JSX.Element => {
   const dispatch = useAppDispatch()

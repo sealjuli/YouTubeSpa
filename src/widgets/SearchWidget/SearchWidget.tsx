@@ -1,13 +1,13 @@
 import { JSX } from 'react'
-import { InputForm } from '../../features/InputForm'
-import { Videos } from '../VideosWidget/Videos'
-import { DisplayInformation } from '../../features/DisplayInformation/DisplayInformation'
+import { InputForm } from '../../features/inputForm/inputForm'
+import { VideosWidget } from '../videosWidget/videosWidget'
+import { DisplayInformation } from '../../features/displayInformation/displayInformation'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
 import {
   selectVideoStatus,
   selectVideosError,
 } from '../../shared/redux/slices/videosSlice'
-import { ModalWindow } from '../../features/ModalWindow/ModalWindow'
+import { ModalWindow } from '../../features/modalWindow/modalWindow'
 
 export const SearchtWidget = (): JSX.Element => {
   const videosStatus = useAppSelector(selectVideoStatus)
@@ -18,7 +18,7 @@ export const SearchtWidget = (): JSX.Element => {
       <>
         <InputForm />
         <DisplayInformation />
-        <Videos />
+        <VideosWidget />
         <ModalWindow />
       </>
     )

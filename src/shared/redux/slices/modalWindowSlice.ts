@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FavoriteItemType } from '../../types/favoriteItemsTypes'
-import { sortEnum } from '../../types/favoriteItemsTypes'
+import { SortType } from '../../types/favoriteItemsTypes'
 
 type InitialState = {
     showWindow: boolean,
@@ -13,7 +13,7 @@ const initialState: InitialState = {
         id: '',
         request: '',
         requestName: '',
-        sortBy: sortEnum.none,
+        sortBy: 'none',
         quantity: 12
     }
 }
@@ -31,7 +31,7 @@ const modalWindowSlice = createSlice({
         setRequestName: (state, action: PayloadAction<string>) => {
             state.query.requestName = action.payload
         },
-        setSortBy: (state, action: PayloadAction<sortEnum>) => {
+        setSortBy: (state, action: PayloadAction<SortType>) => {
             state.query.sortBy = action.payload
         },
         setQuantity: (state, action: PayloadAction<number | null>) => {
@@ -44,7 +44,7 @@ const modalWindowSlice = createSlice({
         clearQuery: (state) => {
             state.query.request = ''
             state.query.requestName = ''
-            state.query.sortBy = sortEnum.none
+            state.query.sortBy = 'none'
             state.query.quantity = 12
         }
     },

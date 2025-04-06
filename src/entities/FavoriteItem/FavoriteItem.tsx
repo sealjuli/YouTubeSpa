@@ -1,4 +1,4 @@
-import React, { JSX } from 'react'
+import { JSX } from 'react'
 import { Button } from 'antd'
 import { FavoriteItemType } from '../../shared/types/favoriteItemsTypes'
 import { useAppDispatch } from '../../shared/hooks/storeHooks'
@@ -13,13 +13,13 @@ import {
   updateSearchInputValue,
 } from '../../shared/redux/slices/inputValueSlice'
 import { fetchGetVideos } from '../../shared/redux/slices/videosSlice'
-import './FavoriteItemStyle.css'
+import './favoriteItemStyle.css'
 
 type PropsType = {
   item: FavoriteItemType
 }
 
-export const FavoriteItem = React.memo(({ item }: PropsType): JSX.Element => {
+export const FavoriteItem = ({ item }: PropsType): JSX.Element => {
   const dispatch = useAppDispatch()
 
   const openModalWindow = (item: FavoriteItemType) => {
@@ -59,4 +59,4 @@ export const FavoriteItem = React.memo(({ item }: PropsType): JSX.Element => {
       </div>
     </div>
   )
-})
+}

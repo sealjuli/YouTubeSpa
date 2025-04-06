@@ -1,8 +1,8 @@
 import { JSX } from 'react'
 import { Layout } from 'antd'
-import { LayoutHeader } from '../../features/LayoutHeader/LayoutHeader'
-import { ContentWidget } from '../../widgets/ContentWidget/ContentWidget'
-import './HomePageStyle.css'
+import { LayoutHeader } from '../../features/layoutHeader/layoutHeader'
+import { ContentWidget } from '../../widgets/contentWidget/contentWidget'
+import './homePageStyle.css'
 
 export const HomePage = (): JSX.Element => {
   return (
