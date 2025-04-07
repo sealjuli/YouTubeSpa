@@ -1,4 +1,4 @@
-export enum menuItemsEnum {
+export enum MenuItemsEnum {
     'search',
     'favorites'
 }

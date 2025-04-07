@@ -13,7 +13,7 @@ import {
   updateItem,
   addItem,
 } from '../../shared/redux/slices/favoriteItemsSlice'
-import { menuItemsEnum } from '../../shared/enums/menuItemsEnum'
+import { MenuItemsEnum } from '../../shared/enums/menuItemsEnum'
 
 export const ModalWindow = (): JSX.Element => {
   const isModalOpen = useAppSelector(selectShowWindow)
@@ -24,13 +24,13 @@ export const ModalWindow = (): JSX.Element => {
   const handleOk = () => {
     if (query.request && query.requestName) {
       dispatch(changeShowWindow())
-      if (currentMenuItem === menuItemsEnum.search) {
+      if (currentMenuItem === MenuItemsEnum.search) {
         // добавить данные
         const id = crypto.randomUUID()
         dispatch(addItem({ ...query, id }))
         // закрасить лайк
         dispatch(setLikeButton())
-      } else if (currentMenuItem === menuItemsEnum.favorites) {
+      } else if (currentMenuItem === MenuItemsEnum.favorites) {
         dispatch(updateItem(query))
       }
     } else {

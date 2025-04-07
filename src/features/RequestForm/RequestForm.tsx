@@ -10,7 +10,7 @@ import {
 } from '../../shared/redux/slices/modalWindowSlice'
 import { FieldType } from '../../shared/types/favoriteItemsTypes'
 import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
-import { menuItemsEnum } from '../../shared/enums/menuItemsEnum'
+import { MenuItemsEnum } from '../../shared/enums/menuItemsEnum'
 import { SortType } from '../../shared/types/favoriteItemsTypes'
 import './requestFormStyle.css'
 
@@ -67,7 +67,7 @@ export const RequestForm = (): JSX.Element => {
         rules={[{ required: true, message: 'Пожалуйста, заполните запрос' }]}
       >
         <Input
-          disabled={currentMenuItem === menuItemsEnum.search}
+          disabled={currentMenuItem === MenuItemsEnum.search}
           onChange={(e) => dispatch(setRequest(e.target.value))}
         />
       </Form.Item>

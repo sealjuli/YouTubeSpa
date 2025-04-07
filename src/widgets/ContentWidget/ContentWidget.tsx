@@ -5,7 +5,7 @@ import { FavoritesWidget } from '../favoritesWidget/favoritesWidget'
 import { useAppSelector } from '../../shared/hooks/storeHooks'
 import { selectVideoStatus } from '../../shared/redux/slices/videosSlice'
 import { selectCurrentMenuItem } from '../../shared/redux/slices/menuItemSlice'
-import { menuItemsEnum } from '../../shared/enums/menuItemsEnum'
+import { MenuItemsEnum } from '../../shared/enums/menuItemsEnum'
 import './contentWidgetStyle.css'
 
 const { Content } = Layout
@@ -13,7 +13,7 @@ const { Content } = Layout
 export const ContentWidget = (): JSX.Element => {
   const status = useAppSelector(selectVideoStatus)
   const menuItem = useAppSelector(selectCurrentMenuItem)
-  const favourites = menuItem === menuItemsEnum.favorites
+  const favourites = menuItem === MenuItemsEnum.favorites
 
   return (
     <Content

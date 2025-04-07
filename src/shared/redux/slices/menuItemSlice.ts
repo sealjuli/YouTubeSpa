@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { menuItemsEnum } from '../../enums/menuItemsEnum'
+import { MenuItemsEnum } from '../../enums/menuItemsEnum'
 
 type InitialState = {
-    currentItemMenu: menuItemsEnum,
+    currentItemMenu: MenuItemsEnum,
 }
 
 const initialState: InitialState = {
-    currentItemMenu: menuItemsEnum.search,
+    currentItemMenu: MenuItemsEnum.search,
 }
 
 const menuItemSlice = createSlice({
@@ -14,10 +14,10 @@ const menuItemSlice = createSlice({
     initialState,
     reducers: {
         setSearch: (state) => {
-            state.currentItemMenu = menuItemsEnum.search
+            state.currentItemMenu = MenuItemsEnum.search
         },
         setFavorites: (state) => {
-            state.currentItemMenu = menuItemsEnum.favorites
+            state.currentItemMenu = MenuItemsEnum.favorites
         },
     },
     selectors: {

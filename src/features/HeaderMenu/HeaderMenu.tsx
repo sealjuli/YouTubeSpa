@@ -2,7 +2,7 @@ import { JSX } from 'react'
 import { Menu } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import { MenuInfo } from 'rc-menu/lib/interface'
-import { YouTubeSpaRoutes } from '../../shared/routes/routes'
+import { youTubeSpaRoutes } from '../../shared/routes/routes'
 import { useAppSelector, useAppDispatch } from '../../shared/hooks/storeHooks'
 import {
   setFavorites,
@@ -34,7 +34,7 @@ export const HeaderMenu = (): JSX.Element => {
     if (e.key === '2') {
       localStorage.removeItem('token')
       localStorage.removeItem('login')
-      navigate(`/${YouTubeSpaRoutes.root}/${YouTubeSpaRoutes.login}`)
+      navigate(`/${youTubeSpaRoutes.root}/${youTubeSpaRoutes.login}`)
     }
   }
 
