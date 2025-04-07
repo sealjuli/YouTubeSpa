@@ -1,2 +1,2 @@
 # React + TypeScript + Vite
-# UI Framework - Ant Design
+UI Framework - Ant Design
